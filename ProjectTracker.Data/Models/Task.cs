@@ -14,6 +14,6 @@ namespace ProjectTracker.Data.Models
         public Status Status { get; set; }
         public DateTime CreatedOn { get; set; }
         public User CreatedBy { get; set; }
-
+        public virtual Project Project { get; set; }
     }
 }

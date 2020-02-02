@@ -11,6 +11,6 @@ namespace ProjectTracker.Data.Models
         public string Description { get; set; }
         public DateTime CreatedOn { get; set; }
         public User CreatedBy { get; set; }
-
+        public virtual ICollection<Task> Tasks { get; set; }
     }
 }
