@@ -10,9 +10,9 @@ namespace ProjectTracker.Controllers
 {
     public class ProjectsController : Controller
     {
-        private readonly ProjectsRepository ProjectsRepository;
+        private readonly IProjectsRepository ProjectsRepository;
 
-        public ProjectsController(ProjectsRepository projectsRepository)
+        public ProjectsController(IProjectsRepository projectsRepository)
         {
             ProjectsRepository = projectsRepository;
         }
