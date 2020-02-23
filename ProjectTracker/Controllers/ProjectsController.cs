@@ -10,17 +10,16 @@ namespace ProjectTracker.Controllers
 {
     public class ProjectsController : Controller
     {
-        //TODO: Implement respository 
-        private readonly ApplicationDbContext Db;
+        private readonly ProjectsRepository ProjectsRepository;
 
-        public ProjectsController(ApplicationDbContext db)
+        public ProjectsController(ProjectsRepository projectsRepository)
         {
-            Db = db;
+            ProjectsRepository = projectsRepository;
         }
 
         public IActionResult Index()
         {
-            IQueryable<Project> projects = Db.Projects.OrderBy(p => p.Name);
+            IQueryable<Project> projects = ProjectsRepository.GetProjects();
 
             return View(projects);
         }
