@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectTracker.Data;
 
 namespace ProjectTracker.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200223145845_CreateInitialTables")]
+    partial class CreateInitialTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -235,14 +237,14 @@ namespace ProjectTracker.Data.Migrations
                     b.Property<string>("Text")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Username")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("UserID")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("TaskID");
 
-                    b.HasIndex("Username");
+                    b.HasIndex("UserID");
 
                     b.ToTable("Comments");
                 });
@@ -257,20 +259,20 @@ namespace ProjectTracker.Data.Migrations
                     b.Property<string>("Body")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FromUsername")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("FromID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Subject")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ToUsername")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("ToID")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("FromUsername");
+                    b.HasIndex("FromID");
 
-                    b.HasIndex("ToUsername");
+                    b.HasIndex("ToID");
 
                     b.ToTable("Messages");
                 });
@@ -282,8 +284,8 @@ namespace ProjectTracker.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CreatedByUsername")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("CreatedByID")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -296,7 +298,7 @@ namespace ProjectTracker.Data.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("CreatedByUsername");
+                    b.HasIndex("CreatedByID");
 
                     b.ToTable("Projects");
                 });
@@ -323,8 +325,8 @@ namespace ProjectTracker.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CreatedByUsername")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("CreatedByID")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -338,8 +340,8 @@ namespace ProjectTracker.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("OwnerUsername")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("OwnerID")
+                        .HasColumnType("int");
 
                     b.Property<int?>("ProjectID")
                         .HasColumnType("int");
@@ -352,9 +354,9 @@ namespace ProjectTracker.Data.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("CreatedByUsername");
+                    b.HasIndex("CreatedByID");
 
-                    b.HasIndex("OwnerUsername");
+                    b.HasIndex("OwnerID");
 
                     b.HasIndex("ProjectID");
 
@@ -365,8 +367,10 @@ namespace ProjectTracker.Data.Migrations
 
             modelBuilder.Entity("ProjectTracker.Data.Models.User", b =>
                 {
-                    b.Property<string>("Username")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -377,7 +381,10 @@ namespace ProjectTracker.Data.Migrations
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Username");
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
 
                     b.ToTable("Users");
                 });
@@ -441,36 +448,36 @@ namespace ProjectTracker.Data.Migrations
 
                     b.HasOne("ProjectTracker.Data.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("Username");
+                        .HasForeignKey("UserID");
                 });
 
             modelBuilder.Entity("ProjectTracker.Data.Models.Message", b =>
                 {
                     b.HasOne("ProjectTracker.Data.Models.User", "From")
                         .WithMany()
-                        .HasForeignKey("FromUsername");
+                        .HasForeignKey("FromID");
 
                     b.HasOne("ProjectTracker.Data.Models.User", "To")
                         .WithMany()
-                        .HasForeignKey("ToUsername");
+                        .HasForeignKey("ToID");
                 });
 
             modelBuilder.Entity("ProjectTracker.Data.Models.Project", b =>
                 {
                     b.HasOne("ProjectTracker.Data.Models.User", "CreatedBy")
                         .WithMany()
-                        .HasForeignKey("CreatedByUsername");
+                        .HasForeignKey("CreatedByID");
                 });
 
             modelBuilder.Entity("ProjectTracker.Data.Models.Task", b =>
                 {
                     b.HasOne("ProjectTracker.Data.Models.User", "CreatedBy")
                         .WithMany()
-                        .HasForeignKey("CreatedByUsername");
+                        .HasForeignKey("CreatedByID");
 
                     b.HasOne("ProjectTracker.Data.Models.User", "Owner")
                         .WithMany()
-                        .HasForeignKey("OwnerUsername");
+                        .HasForeignKey("OwnerID");
 
                     b.HasOne("ProjectTracker.Data.Models.Project", "Project")
                         .WithMany("Tasks")
