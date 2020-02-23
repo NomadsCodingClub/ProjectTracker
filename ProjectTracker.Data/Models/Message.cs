@@ -9,7 +9,7 @@ namespace ProjectTracker.Data.Models
         public int ID { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
-        public User To { get; set; }
-        public User From { get; set; }
+        public virtual User From { get; set; }
+        public virtual User To { get; set; }
     }
 }
