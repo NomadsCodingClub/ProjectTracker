@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace ProjectTracker.Data.Models
@@ -9,12 +10,22 @@ namespace ProjectTracker.Data.Models
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public User Owner { get; set; }
+
+        [DataType(DataType.Date)]
         public DateTime StartDate { get; set; }
+
+        [DataType(DataType.Date)]
         public DateTime EndDate { get; set; }
-        public Status Status { get; set; }
-        public DateTime CreatedOn { get; set; }
-        public User CreatedBy { get; set; }
+
+        public virtual Status Status { get; set; }
+
+        public virtual User Owner { get; set; }
+
         public virtual Project Project { get; set; }
+
+        [Display(Name = "Created On")]
+        public DateTime CreatedOn { get; set; }
+        
+        public virtual User CreatedBy { get; set; }
     }
 }
