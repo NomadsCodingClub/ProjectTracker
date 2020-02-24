@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace ProjectTracker.Data
 {
-    public interface IProjectsRepository
+    public interface IProjectsRepository : IGenericRepository<Project>
     {
         Project GetProject();
         IQueryable<Project> GetProjects();

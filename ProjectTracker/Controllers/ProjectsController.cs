@@ -10,17 +10,17 @@ namespace ProjectTracker.Controllers
 {
     public class ProjectsController : Controller
     {
-        private readonly IProjectsRepository ProjectsRepository;
+        private readonly IUnitOfWork UnitOfWork;
 
-        public ProjectsController(IProjectsRepository projectsRepository)
+        public ProjectsController(IUnitOfWork unitOfWork)
         {
-            ProjectsRepository = projectsRepository;
+            UnitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
-            IQueryable<Project> projects = ProjectsRepository.GetProjects();
-
+            IQueryable<Project> projects = UnitOfWork.ProjectsRepository.GetProjects();
+            
             return View(projects);
         }
     }

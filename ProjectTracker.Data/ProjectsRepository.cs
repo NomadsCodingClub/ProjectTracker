@@ -4,14 +4,9 @@ using System.Linq;
 
 namespace ProjectTracker.Data
 {
-    public class ProjectsRepository : IProjectsRepository
+    public class ProjectsRepository : GenericRepository<Project>, IProjectsRepository
     {
-        private readonly ApplicationDbContext Context;
-
-        public ProjectsRepository(ApplicationDbContext context)
-        {
-            Context = context;
-        }
+        public ProjectsRepository(ApplicationDbContext context) : base (context) { }
 
         public Project GetProject()
         {
@@ -20,7 +15,7 @@ namespace ProjectTracker.Data
 
         public IQueryable<Project> GetProjects()
         {
-            return Context.Projects;
+            return Entities.OrderBy(p => p.ID);
         }
     }
 }
