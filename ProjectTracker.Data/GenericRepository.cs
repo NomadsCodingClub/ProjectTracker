@@ -7,10 +7,12 @@ namespace ProjectTracker.Data
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
+        protected ApplicationDbContext ApplicationDbContext;
         protected DbSet<T> Entities;
 
         public GenericRepository(ApplicationDbContext context)
         {
+            ApplicationDbContext = context;
             Entities = context.Set<T>();
         }
 
