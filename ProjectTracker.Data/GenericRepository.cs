@@ -5,28 +5,28 @@ using System.Text;
 
 namespace ProjectTracker.Data
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : class
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
         protected ApplicationDbContext ApplicationDbContext;
-        protected DbSet<T> Entities;
+        protected DbSet<TEntity> Entities;
 
         public GenericRepository(ApplicationDbContext context)
         {
             ApplicationDbContext = context;
-            Entities = context.Set<T>();
+            Entities = context.Set<TEntity>();
         }
 
-        public void Add(T Entity)
+        public void Add(TEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(T Entity)
+        public void Delete(TEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(T Entity)
+        public void Update(TEntity entity)
         {
             throw new NotImplementedException();
         }

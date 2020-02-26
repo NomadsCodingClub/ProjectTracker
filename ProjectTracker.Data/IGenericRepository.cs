@@ -4,10 +4,10 @@ using System.Text;
 
 namespace ProjectTracker.Data
 {
-    public interface IGenericRepository<T> where T : class
+    public interface IGenericRepository<TEntity> where TEntity : class
     {
-        void Add(T Entity);
-        void Delete(T Entity);
-        void Update(T Entity);
+        void Add(TEntity entity);
+        void Delete(TEntity entity);
+        void Update(TEntity entity);
     }
 }
