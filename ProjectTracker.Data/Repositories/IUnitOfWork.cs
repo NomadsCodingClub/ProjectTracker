@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ProjectTracker.Data
+namespace ProjectTracker.Data.Repositories
 {
     public interface IUnitOfWork
     {

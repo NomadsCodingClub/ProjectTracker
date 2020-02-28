@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 
-namespace ProjectTracker.Data
+namespace ProjectTracker.Data.Repositories
 {
     public class ProjectsRepository : GenericRepository<Project>, IProjectsRepository
     {
