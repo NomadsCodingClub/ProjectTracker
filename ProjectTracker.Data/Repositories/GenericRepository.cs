@@ -18,7 +18,7 @@ namespace ProjectTracker.Data.Repositories
 
         public void Add(TEntity entity)
         {
-            throw new NotImplementedException();
+            _entities.Add(entity);
         }
 
         public void Delete(TEntity entity)
