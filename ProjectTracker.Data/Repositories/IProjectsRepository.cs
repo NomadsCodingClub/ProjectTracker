@@ -5,7 +5,7 @@ namespace ProjectTracker.Data.Repositories
 {
     public interface IProjectsRepository : IGenericRepository<Project>
     {
-        Project GetProject();
+        Project GetProject(int id);
         IQueryable<Project> GetProjects();
     }
 }

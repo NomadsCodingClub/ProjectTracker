@@ -6,20 +6,20 @@ namespace ProjectTracker.Data.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly ApplicationDbContext DbContext;
+        private readonly ApplicationDbContext _dbContext;
 
         public IProjectsRepository ProjectsRepository { get; }
 
         public UnitOfWork(ApplicationDbContext dbContext)
         {
-            DbContext = dbContext;
+            _dbContext = dbContext;
 
-            ProjectsRepository = new ProjectsRepository(DbContext);
+            ProjectsRepository = new ProjectsRepository(_dbContext);
         }
 
         public void Save()
         {
-            DbContext.SaveChanges();
+            _dbContext.SaveChanges();
         }
     }
 }

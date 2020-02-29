@@ -8,14 +8,14 @@ namespace ProjectTracker.Data.Repositories
     {
         public ProjectsRepository(ApplicationDbContext context) : base (context) { }
 
-        public Project GetProject()
+        public Project GetProject(int id)
         {
-            throw new NotImplementedException();
+            return _entities.Find(id);
         }
 
         public IQueryable<Project> GetProjects()
         {
-            return Entities.OrderBy(p => p.ID);
+            return _entities.OrderBy(p => p.ID);
         }
     }
 }
