@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -12,7 +13,7 @@ namespace ProjectTracker.Data.Models
 
         [Display(Name = "Posted On")]
         public DateTime PostedOn { get; set; }
-        public virtual User User { get; set; }
+        public virtual IdentityUser User { get; set; }
         public virtual Task Task { get; set; }
     }
 }
