@@ -8,7 +8,24 @@ namespace ProjectTracker.ViewModels
 {
     public class ProjectForm
     {
-        public IEnumerable<User> Users { get; set; }
-        public Project Project { get; set; }
+        public IEnumerable<User> Users { get; private set; }
+        public Project Project { get; private set; }
+
+        public ProjectForm(IEnumerable<User> users, Project project = null)
+        {
+            Users = users;
+
+            if (project != null)
+            {
+                Project = project;
+            }
+            else
+            {
+                Project = new Project
+                {
+                    CreatedOn = DateTime.Now
+                };
+            }
+        }
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProjectTracker.Data;
 using ProjectTracker.Data.Models;
 using ProjectTracker.Data.Repositories;
+using ProjectTracker.ViewModels;
 
 namespace ProjectTracker.Controllers
 {
@@ -34,22 +35,26 @@ namespace ProjectTracker.Controllers
 
         public IActionResult Add()
         {
-            return View();
+            //TODO Remove test code
+            IEnumerable<User> users = new List<User>();
+
+            ProjectForm projectForm = new ProjectForm(users);
+            return View(projectForm);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Add(Project project)
+        public IActionResult Add(ProjectForm projectForm)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.ProjectsRepository.Add(project);
+                _unitOfWork.ProjectsRepository.Add(projectForm.Project);
                 _unitOfWork.Save();
                 
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(project);
+            return View(projectForm);
         }
     }
 }
