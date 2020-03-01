@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -10,10 +11,15 @@ namespace ProjectTracker.Data.Models
         public string Name { get; set; }
         public string Description { get; set; }
 
-        [DataType(DataType.Date)]
+        [HiddenInput]
         public DateTime CreatedOn { get; set; }
 
         public virtual User CreatedBy { get; set; }
         public virtual ICollection<Task> Tasks { get; set; }
+
+        public Project()
+        {
+            CreatedOn = DateTime.Now;
+        }
     }
 }
