@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectTracker.Web.UI", "ProjectTracker\ProjectTracker.Web.UI.csproj", "{01A67B2E-CFBD-492B-8F94-24BD2E231A43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectTracker", "ProjectTracker\ProjectTracker.csproj", "{01A67B2E-CFBD-492B-8F94-24BD2E231A43}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectTracker.Data", "ProjectTracker.Data\ProjectTracker.Data.csproj", "{31FB45D9-6731-43B0-8BBD-3E3165419D7A}"
 EndProject
